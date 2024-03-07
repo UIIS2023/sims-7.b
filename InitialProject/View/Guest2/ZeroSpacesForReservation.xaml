@@ -1,0 +1,77 @@
+﻿<Window x:Class="InitialProject.View.Guest2.ZeroSpacesForReservation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitialProject.View.Guest2"
+        xmlns:ns="clr-namespace:InitialProject.Localization"
+        mc:Ignorable="d"
+        Title="DMJM-Tours" Height="768" Width="1024" WindowStartupLocation="CenterScreen"
+        Icon ="/Resources/Images/favicon.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="120"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="White" Grid.ColumnSpan="2">
+
+            <Border BorderBrush="#DDDDDD" BorderThickness="2" Margin="3">
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Resources/Images/favicon.ico" Margin="10" HorizontalAlignment="Left"/>
+                        <TextBlock FontSize="78" FontFamily="Bernard MT" FontWeight="Bold" VerticalAlignment="Center">
+                            DMJM Tours
+                        </TextBlock>
+                    </StackPanel>
+
+
+                </Grid>
+            </Border>
+        </Grid>
+
+        <TextBlock Grid.Row="1" 
+                   FontSize="20" Margin="30" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap"
+                   Text="{ns:Loc NoSpacesAvailable}" />
+
+
+        <Grid Grid.Row="2" Margin="30, 0, 30, 0" Grid.ColumnSpan="2" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <DataGrid FontSize="20"
+                    ItemsSource="{Binding Tours}" SelectedItem="{Binding SelectedTour}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{ns:Loc DGName}"  Binding="{Binding Name}" Width="*" />
+                        <DataGridTextColumn Header="{ns:Loc DGCountry}" Binding="{Binding Country}" Width="*"/>
+                        <DataGridTextColumn Header="{ns:Loc DGCity}" Binding="{Binding City}" Width="*"/>
+                        <DataGridTextColumn Header="{ns:Loc DGLanguage}" Binding="{Binding Language}" Width="*"/>
+                        <DataGridTextColumn Header="{ns:Loc DGGuests}" Binding="{Binding Guests}" Width="*"/>
+                        <DataGridTextColumn Header="{ns:Loc DGDuration}" Binding="{Binding Duration}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
+
+        
+            <Button Grid.Row="3"
+                    FontSize="20" Height="40" Width="160" HorizontalAlignment="Center"
+                    Command="{Binding ExitCommand}" >
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Resources/Images/cross.png" Width="25" Margin="5"/>
+                        <TextBlock Text="{ns:Loc Exit}"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        
+    </Grid>
+
+</Window>

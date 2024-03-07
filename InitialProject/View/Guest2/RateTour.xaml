@@ -1,0 +1,130 @@
+﻿<Window x:Class="InitialProject.View.Guest2.RateTour"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ns="clr-namespace:InitialProject.Localization"
+        xmlns:local="clr-namespace:InitialProject.View.Guest2" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="DMJM-Tours" Icon ="/Resources/Images/favicon.ico" WindowStartupLocation="CenterScreen"
+        Height="768" Width="600">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <!-- User information section -->
+        <Grid Background="White">
+
+            <Border BorderBrush="#DDDDDD" BorderThickness="2" Margin="3">
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Resources/Images/favicon.ico" Margin="10" HorizontalAlignment="Left"/>
+                        <TextBlock FontSize="60" FontFamily="Bernard MT" FontWeight="Bold" VerticalAlignment="Center">
+                            DMJM Tours
+                        </TextBlock>
+                    </StackPanel>
+
+
+
+                </Grid>
+            </Border>
+
+            
+        </Grid>
+
+        <GroupBox Margin="10" Grid.Row="1">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="25" FontWeight="Bold" Content="{ns:Loc rateTour}"/>
+                    <Image x:Name="ToursImage" Source="/Resources/Images/info.png" 
+                                        Height="30" Margin ="5, 0, 0, 0 " HorizontalAlignment="Left" VerticalAlignment="Center">
+                        
+                    </Image>
+                    <Popup x:Name="ToursPopup" Placement="Right" PlacementTarget="{Binding ElementName=ToursImage}" IsOpen="{Binding IsOpen}">
+                        <TextBlock Text="{ns:Loc ReserveInfo}" Background="#96CDFA" Padding="5" TextWrapping="Wrap" Width="300"/>
+                    </Popup>
+
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" FontSize="20" Margin="10" Content ="{ns:Loc KnowledgeQuestion}" />
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,40,0,0">
+                    <RadioButton Content="1" IsChecked="{Binding Knowledge1IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="2" IsChecked="{Binding Knowledge2IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="3" IsChecked="{Binding Knowledge3IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="4" IsChecked="{Binding Knowledge4IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="5" IsChecked="{Binding Knowledge5IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                </StackPanel>
+
+                <Label Grid.Row="1" FontSize="20" Margin="10" Content="{ns:Loc InterestingnessQuestion}" />
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,40,0,0">
+                    <RadioButton Content="1" IsChecked="{Binding Interesting1IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="2" IsChecked="{Binding Interesting2IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="3" IsChecked="{Binding Interesting3IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="4" IsChecked="{Binding Interesting4IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="5" IsChecked="{Binding Interesting5IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                </StackPanel>
+
+                <Label Grid.Row="2" FontSize="20" Margin="10" Content="{ns:Loc LanguageQuestion}" />
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,40,0,0">
+                    <RadioButton Content="1" IsChecked="{Binding Language1IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="2" IsChecked="{Binding Language2IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="3" IsChecked="{Binding Language3IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="4" IsChecked="{Binding Language4IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                    <RadioButton Content="5" IsChecked="{Binding Language5IsChecked, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="20" Margin="10"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3">
+                    <Label  FontSize="20" Margin="10" Content="{ns:Loc CommentQuestion}" />
+                    <TextBox  x:Name="commentTextBox" Width="469" Height="55" Margin="10, 5, 5, 5" HorizontalAlignment="Left" Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="5"  Margin="10" Orientation="Vertical" >
+                    <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top">
+                        <Label FontSize="20" Content="{ns:Loc ImagesQuestion}" />
+                        <TextBox Text="{Binding ImageUrl, Mode=TwoWay}" Width="160" Height="30" Margin="10, 0, 0, 0" />
+                        <Button Command="{Binding AddImageCommand}" Width="30" Height="30" Margin="5,5,0,5">
+                            <Image Source="/Resources/Images/upload.png" Height="15" Width="30" />
+                        </Button>
+                    </StackPanel>
+                    <ListBox x:Name="UrlListBox" Width="458" Height="55" Margin="10, 5, 5, 5" HorizontalAlignment="Left" ItemsSource="{Binding ImageUrls}" />
+                </StackPanel>
+
+            </Grid>
+        </GroupBox>
+
+        
+       
+
+        <StackPanel Grid.Row="6" Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="{ns:Loc Submit}" Command="{Binding SubmitRatingCommand}" FontSize="20" Height="40" Width="160" Margin="5, 5, 10, 5" />
+            <Button Command="{Binding ExitCommand}"  FontSize="20" Height="40" Width="160" Margin="5, 5, 10, 5">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Resources/Images/cross.png" Width="25" Margin="5" VerticalAlignment="Center"/>
+                        <TextBlock Text="{ns:Loc Exit}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            
+        </StackPanel>
+       
+    </Grid>
+</Window>

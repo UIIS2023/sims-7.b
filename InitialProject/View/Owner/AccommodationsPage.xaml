@@ -1,0 +1,91 @@
+﻿<Page x:Class="InitialProject.View.Owner.AccommodationsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InitialProject.View.Owner"
+      mc:Ignorable="d"  Background="#FF684CA4"
+      d:DesignHeight="700" d:DesignWidth="430"
+      Title="AccommodationsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Hyperlink Foreground="White" Command="{Binding NavigateToMinStatisticsPageCommand}">
+                <TextBlock Text="{Binding LeastPopular}" FontSize="14" FontFamily="Comic Sans MS"></TextBlock>
+            </Hyperlink>
+            <ToolTipService.ToolTip>
+                <TextBlock Text="We recommend you maybe shut this one down?"></TextBlock>
+            </ToolTipService.ToolTip>
+        </TextBlock>
+        <Button Grid.Row="1" Grid.Column="1" Height="50" Width="50" Command="{Binding AddAccommodationCommand}" Background="Transparent">
+            <Image Source="/Resources/Images/OwnerIcons/image.png"></Image>
+        </Button>
+        <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Hyperlink Foreground="White" Command="{Binding NavigateToMaxStatisticsPageCommand}">
+                <TextBlock Text="{Binding MostPopular}" FontSize="14" FontFamily="Comic Sans MS"></TextBlock>
+            </Hyperlink>
+            <ToolTipService.ToolTip>
+                <TextBlock Text="Maybe open a new accommodation here?"></TextBlock>
+            </ToolTipService.ToolTip>
+        </TextBlock>
+        <DataGrid ItemsSource="{Binding Path=Accommodations, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.ColumnSpan="3"
+                  SelectedItem="{Binding Path=SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
+                  AlternatingRowBackground="#381C74" RowBackground="#FF684CA4"
+                  Foreground="White" Background="#FF684CA4" HorizontalAlignment="Stretch"
+                  RowHeight="60" HeadersVisibility="None" GridLinesVisibility="None"
+                  AutoGenerateColumns="False" IsReadOnly="True" FontFamily="Comic Sans MS">
+            <DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Valid" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding TypeImage}" Width="35" Height="35" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*" FontSize="20" ></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <Button Height="30" Background="Transparent" Command="{Binding DataContext.NavigateToStatisticsPageCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">
+                                    <Image Source="/Resources/Images/OwnerIcons/stats.png"></Image>
+                                    <ToolTipService.ToolTip>
+                                        <TextBlock Text="See how's this accommodation doing"></TextBlock>
+                                    </ToolTipService.ToolTip>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <Button Height="30" Background="Transparent" Command="{Binding DataContext.RenovateAccommodationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">
+                                    <Image Source="/Resources/Images/OwnerIcons/renovation.png" />
+                                    <ToolTipService.ToolTip>
+                                        <TextBlock Text="Appoint a renovation"></TextBlock>
+                                    </ToolTipService.ToolTip>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
